@@ -1,0 +1,64 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.example.fragmentpractice.ButtonTitlesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/food_list">
+
+        <Button
+            android:id="@+id/ramen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="냉라면" />
+        <Button
+            android:id="@+id/salmon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="연어장" />
+        <Button
+            android:id="@+id/eggrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="반숙 삶은달걀 덮밥" />
+        <Button
+            android:id="@+id/bibimyeon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비빔면" />
+        <Button
+            android:id="@+id/eggtoast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="마요네즈 계란 토스트" />
+        <Button
+            android:id="@+id/riceskewer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="떡꼬치" />
+        <Button
+            android:id="@+id/asparagus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아스파라거스 춘권피" />
+        <Button
+            android:id="@+id/omurice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="말랑말랑 오므라이스" />
+        <Button
+            android:id="@+id/eggbread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전자레인지 계란빵" />
+        <Button
+            android:id="@+id/eggcurry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계란 카레" />
+    </LinearLayout>
+</ScrollView>
