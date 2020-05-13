@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animals">
+        <item>사자</item>
+        <item>호랑이</item>
+        <item>표범</item>
+    </string-array>
+</resources>
