@@ -1,10 +1,12 @@
 package com.example.mykotlinapp
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +21,12 @@ class MainActivity : AppCompatActivity() {
             builder.setTitle("Title")
             builder.setMessage("Message")
             builder.setIcon(R.mipmap.ic_launcher)
-            builder.setPositiveButton("OK") {
-                dialog: DialogInterface?, which: Int ->
+            builder.setPositiveButton("OK", object : DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
                     Toast.makeText(applicationContext, "Close Dialog", Toast.LENGTH_SHORT).show()
                 }
-            val dialog = builder.create()
+            })
+	    val dialog = builder.create()
             dialog.show()
         }
     }
