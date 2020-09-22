@@ -21,12 +21,10 @@ class MainActivity : AppCompatActivity() {
             builder.setTitle("Title")
             builder.setMessage("Message")
             builder.setIcon(R.mipmap.ic_launcher)
-            builder.setPositiveButton("OK", object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    Toast.makeText(applicationContext, "Close Dialog", Toast.LENGTH_SHORT).show()
-                }
-            })
-	    val dialog = builder.create()
+            builder.setPositiveButton("OK") { dialog: DialogInterface?, which: Int ->
+                Toast.makeText(this, "Close Dialog", Toast.LENGTH_SHORT).show()
+            }
+            val dialog = builder.create()
             dialog.show()
         }
     }
