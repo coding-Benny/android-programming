@@ -13,7 +13,18 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            Toast.makeText(applicationContext, "Test", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
+
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Title")
+            builder.setMessage("Message")
+            builder.setIcon(R.mipmap.ic_launcher)
+            builder.setPositiveButton("OK") {
+                dialog: DialogInterface?, which: Int ->
+                    Toast.makeText(applicationContext, "Close Dialog", Toast.LENGTH_SHORT).show()
+                }
+            val dialog = builder.create()
+            dialog.show()
         }
     }
 }
