@@ -17,15 +17,15 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             // Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show()
 
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Title")
-            builder.setMessage("Message")
-            builder.setIcon(R.mipmap.ic_launcher)
-            builder.setPositiveButton("OK") { dialog: DialogInterface?, which: Int ->
-                Toast.makeText(this, "Close Dialog", Toast.LENGTH_SHORT).show()
-            }
-            val dialog = builder.create()
-            dialog.show()
+            with (AlertDialog.Builder(this)) {
+                setTitle("Title")
+                setMessage("Message")
+                setIcon(R.mipmap.ic_launcher)
+                setPositiveButton("OK") { dialog: DialogInterface?, which: Int ->
+                    Toast.makeText(applicationContext, "Close Dialog", Toast.LENGTH_SHORT).show()
+                }
+                create()
+            }.show()
         }
     }
 }
