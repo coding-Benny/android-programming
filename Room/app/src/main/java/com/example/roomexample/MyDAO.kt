@@ -39,6 +39,9 @@ interface MyDAO {
     @Query("SELECT * FROM student_table WHERE student_id = :id")
     suspend fun getStudentsWithEnrollment(id: Int): List<StudentWithEnrollments>
 
+    @Delete
+    suspend fun deleteEnrollment(enrollment: Enrollment)
+
     @Query("SELECT * FROM class_table WHERE id = :id")
     suspend fun getClassInfo(id: Int): List<ClassInfo>
 }

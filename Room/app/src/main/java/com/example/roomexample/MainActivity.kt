@@ -93,15 +93,20 @@ class MainActivity : AppCompatActivity() {
                     myDAO.insertStudent(Student(id, name))
                 }
             }
+            binding.editStudentName.setText("")
         }
 
         binding.enrollStudent.setOnClickListener {
             val id = Integer.parseInt(binding.editStudentId.text.toString())
+            //val studentInfo = binding.textQueryStudent.text.split("-", ":")
+            //val id = Integer.parseInt(studentInfo[0])
+            //val name = studentInfo[1]
             runBlocking {
                 with(myDAO) {
                     val name = getStudentById(id)[0].name
                     Log.d("TAG", "$id, $name")
                     insertEnrollment(Enrollment(id, 3))
+                    binding.queryStudent.performClick()
                 }
             }
         }
@@ -111,7 +116,14 @@ class MainActivity : AppCompatActivity() {
             runBlocking {
                 with(myDAO) {
                     val name = getStudentById(id)[0].name
+                    val results = myDAO.getStudentsWithEnrollment(id)
+                    if (results.isNotEmpty()) {
+                        for (c in results[0].enrollments) {
+                            deleteEnrollment(Enrollment(id, c.cid))
+                        }
+                    }
                     deleteStudent(Student(id, name))
+                    binding.textQueryStudent.text = ""
                 }
             }
         }
