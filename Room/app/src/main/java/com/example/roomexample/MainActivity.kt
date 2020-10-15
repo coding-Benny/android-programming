@@ -1,5 +1,6 @@
 package com.example.roomexample
 
+import android.database.sqlite.SQLiteConstraintException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -93,20 +94,18 @@ class MainActivity : AppCompatActivity() {
                     myDAO.insertStudent(Student(id, name))
                 }
             }
-            binding.editStudentName.setText("")
         }
 
         binding.enrollStudent.setOnClickListener {
             val id = Integer.parseInt(binding.editStudentId.text.toString())
-            //val studentInfo = binding.textQueryStudent.text.split("-", ":")
-            //val id = Integer.parseInt(studentInfo[0])
-            //val name = studentInfo[1]
             runBlocking {
                 with(myDAO) {
-                    val name = getStudentById(id)[0].name
-                    Log.d("TAG", "$id, $name")
-                    insertEnrollment(Enrollment(id, 3))
-                    binding.queryStudent.performClick()
+                    try {
+                        insertEnrollment(Enrollment(id, 3))
+                    }
+                    catch (e: SQLiteConstraintException) {
+                        Log.d("TAG", "Can't enroll because $id doesn't exist!!")
+                    }
                 }
             }
         }
@@ -115,15 +114,18 @@ class MainActivity : AppCompatActivity() {
             val id = Integer.parseInt(binding.editStudentId.text.toString())
             runBlocking {
                 with(myDAO) {
-                    val name = getStudentById(id)[0].name
-                    val results = myDAO.getStudentsWithEnrollment(id)
-                    if (results.isNotEmpty()) {
-                        for (c in results[0].enrollments) {
-                            deleteEnrollment(Enrollment(id, c.cid))
+                    try {
+                        val name = getStudentById(id)[0].name
+                        val results = getStudentsWithEnrollment(id)
+                        if (results.isNotEmpty()) {
+                            for (c in results[0].enrollments) {
+                                deleteEnrollment(Enrollment(id, c.cid))
+                            }
                         }
+                        deleteStudent(Student(id, name))
+                    } catch (e: IndexOutOfBoundsException) {
+                        Log.d("TAG", "Can't delete $id doesn't exist!!")
                     }
-                    deleteStudent(Student(id, name))
-                    binding.textQueryStudent.text = ""
                 }
             }
         }
